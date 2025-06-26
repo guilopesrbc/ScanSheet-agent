@@ -18,7 +18,7 @@ class ScanSheetAgent:
     def _validate_model_response(self, model_response: AIMessage):
         """Validate the model response."""
         try:
-            return AIMessageModel.model_validate(model_response.content)
+            return AIMessageModel.model_validate(json.loads(model_response.content)).model_dump_json()
         except:
             raise
 
@@ -50,4 +50,4 @@ class ScanSheetAgent:
         """
         chain = self._build_chain(prompt)
         model_response = self._invoke_model(chain, inputs)
-        return json.dumps(model_response)
+        return model_response
