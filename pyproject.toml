@@ -1,0 +1,24 @@
+[project]
+name = "scansheet-agent"
+version = "0.1.0"
+description = "ScanSheet Agent Library"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain==0.3.25",
+    "langchain-core==0.3.64",
+    "langchain-openai==0.3.21",
+    "pydantic==2.11.5",
+    "openai==1.84.0",
+]
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["src"]
+
+[project.optional-dependencies]
+dev = [
+    "pip-tools",
+]
