@@ -4,8 +4,6 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.prompts import HumanMessagePromptTemplate
 
-from src.utils import encode_image
-
 
 class PromptBuilder:
     def __init__(self, templates_dir: str = "templates"):
@@ -60,7 +58,7 @@ class PromptBuilder:
 
         if variables and "image_url" in variables:
             messages.append(HumanMessage(content=[
-                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(variables["image_url"])}"}}
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{variables['image_url']}"}}
             ]))
 
         return ChatPromptTemplate.from_messages(messages)
