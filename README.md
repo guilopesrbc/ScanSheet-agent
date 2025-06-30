@@ -1,22 +1,24 @@
-from pydantic.color import ints_to_rgba
-
 # ScanSheet Agent Library 
 This library provides a simple interface to interact with the ScanSheet Agent, allowing you to processing form images into formatted JSON with values and columns using OpenAI's models.
 
 ## Installation
+To install the ScanSheet Agent Library, you need to install the library using pip:
+```bash
+pip install git+https://github.com/guilopesrbc/ScanSheet-agent.git@<version>
+```
 
-To install the ScanSheet Agent Library, you need to install all dependencies using pip:
-
-```python
+If you want to install it from the local source code, you can clone the repository and run the following command in the root directory of the project:
+```bash
 pip install .
 ```
 
 If you want to install the development dependencies as well, use:
-```python
+```bash
 pip install .[dev]
 ```
 
 ## Usage
+
 To use the ScanSheet Agent Library, you can import it in your Python script.
 ```python
 from scansheet_agent import ScanSheetAgent
@@ -72,3 +74,5 @@ Finally, you can invoke the agent using the `run` method, passing in the prompt 
 ```python
 response = agent.run(prompt=prompt, inputs=inputs)
 ```
+
+# TODO: Tests
