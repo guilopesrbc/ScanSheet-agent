@@ -75,4 +75,29 @@ Finally, you can invoke the agent using the `run` method, passing in the prompt 
 response = agent.run(prompt=prompt, inputs=inputs)
 ```
 
-# TODO: Tests
+## Tests
+
+The ScanSheet Agent Library includes a comprehensive test suite to ensure its functionality. The tests are located in the `tests` directory.
+
+### Running Tests
+
+You can run all tests using the provided script:
+
+```bash
+python tests/run_tests.py
+```
+
+Or run individual test files:
+
+```bash
+python -m unittest tests/test_agent.py
+python -m unittest tests/test_prompt.py
+python -m unittest tests/test_model.py
+```
+
+### Test Coverage
+
+The tests cover all major components of the library:
+- ScanSheetAgent: Tests for initialization, model response validation, and execution
+- PromptBuilder: Tests for template reading and prompt creation
+- AIMessageModel: Tests for model validation and serialization
