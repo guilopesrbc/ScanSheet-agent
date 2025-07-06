@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.0] - 2025-07-06
+
+### Added
+- Tests supports for agent, prompt, and model classes
+
 ## [0.1.0] - 2025-06-30
 
 ### Added
