@@ -4,9 +4,7 @@ from langchain.chains.llm import LLMChain
 from langchain.chat_models import ChatOpenAI
 from langchain_core.messages import AIMessage
 from langchain_core.prompts import ChatPromptTemplate
-
-from src.model import AIMessageModel
-
+from .model import AIMessageModel
 
 class ScanSheetAgent:
     def __init__(self, api_key: str, model: str):
