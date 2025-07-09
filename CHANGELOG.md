@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.1] - 2025-07-09
+
+### Fixed
+- Fixed issues with lib import.
+
 ## [0.2.0] - 2025-07-06
 
 ### Added
