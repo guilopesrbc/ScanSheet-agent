@@ -1,8 +1,8 @@
-from datetime import datetime
+from datetime import datetime, date
 from enum import Enum
-from typing import Dict, Any, Optional, List
+from typing import Optional, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class DocumentTypeEnum(Enum):
@@ -12,8 +12,6 @@ class DocumentTypeEnum(Enum):
 
 
 class FichaCadastroIndividualContent(BaseModel):
-    """Content for Ficha Cadastro Individual"""
-
     digitado_por: Optional[str] = None
     conferido_por: Optional[str] = None
     num_folha: Optional[str] = None
@@ -21,14 +19,14 @@ class FichaCadastroIndividualContent(BaseModel):
     cbo: Optional[str] = None,
     cnes: Optional[str] = None,
     ine: Optional[str] = None,
-    dt_ficha: Optional[datetime] = None,
+    dt_ficha: Optional[date] = None
     cns_cpf_cidadao: Optional[str] = None
     fl_cidadao_respon_familiar: Optional[str] = None
     cns_cpf_respon_familiar: Optional[str] = None
     microarea: Optional[str] = None
     nm_completo: Optional[str] = None
     nm_social: Optional[str] = None
-    dt_nasc: Optional[str] = None
+    dt_nasc: Optional[date] = None
     sexo: Optional[str] = None
     raca_cor: Optional[str] = None
     etnia: Optional[str] = None
@@ -37,10 +35,10 @@ class FichaCadastroIndividualContent(BaseModel):
     nm_completo_pai: Optional[str] = None
     nacionalidade: Optional[str] = None
     pais_nasc: Optional[str] = None
-    dt_naturalizacao: Optional[str] = None
+    dt_naturalizacao: Optional[date] = None
     portaria_naturaliz: Optional[str] = None
     municipio_uf_nasc: Optional[str] = None
-    dt_entrada_brasil: Optional[str] = None
+    dt_entrada_brasil: Optional[date] = None
     tel_cel: Optional[str] = None
     email: Optional[str] = None
     ocupacao: Optional[str] = None
@@ -63,7 +61,7 @@ class FichaCadastroIndividualContent(BaseModel):
     fl_tria_1: Optional[str] = None
     fl_tria_2: Optional[str] = None
     fl_saida_cadast: Optional[str] = None
-    dt_obito: Optional[datetime] = None
+    dt_obito: Optional[date] = None
     num_do: Optional[str] = None
     fl_gestante: Optional[str] = None
     maternidade_referencia: Optional[str] = None
@@ -105,6 +103,26 @@ class FichaCadastroIndividualContent(BaseModel):
     higiene_pessoal: Optional[List[str]] = []
     alimentacao_ao_dia: Optional[str] = None
     origem_alimentacao: Optional[List[str]] = []
+
+    @field_validator('dt_ficha', 'dt_nasc', 'dt_naturalizacao', 'dt_entrada_brasil', 'dt_obito')
+    def validate_date_format(cls, v):
+        if isinstance(v, str):
+            try:
+                return datetime.strptime(v, "%m-%d-%Y").date()
+            except ValueError:
+                raise ValueError('Date must be in MM-DD-YYYY format')
+        return v
+
+    @field_validator('*')
+    def validate_fl_fields(cls, v, info):
+        if info.field_name.startswith('fl_') and v is not None:
+            normalized = v.lower().strip()
+            normalized = normalized.replace('não', 'nao')
+            if normalized not in ['sim', 'nao']:
+                raise ValueError(f'Field {info.field_name} must be "sim" or "nao"')
+            return normalized
+        return v
+
 
 class AIMessageModel(BaseModel):
     """"Agent Message Model"""
