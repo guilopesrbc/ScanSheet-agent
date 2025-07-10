@@ -1,10 +1,114 @@
-from typing import Dict, Any
+from datetime import datetime
+from enum import Enum
+from typing import Dict, Any, Optional, List
 
 from pydantic import BaseModel
 
 
-class AIMessageModel(BaseModel):
-    """Agent Message Model"""
+class DocumentTypeEnum(Enum):
+    """Enum for document types"""
 
-    title: str
-    content: Dict[str, Any]
+    FICHA_CADASTRO_INDIVIDUAL = "ficha_cadastro_individual"
+
+
+class FichaCadastroIndividualContent(BaseModel):
+    """Content for Ficha Cadastro Individual"""
+
+    digitado_por: Optional[str] = None
+    conferido_por: Optional[str] = None
+    num_folha: Optional[str] = None
+    cns_prof: Optional[str] = None,
+    cbo: Optional[str] = None,
+    cnes: Optional[str] = None,
+    ine: Optional[str] = None,
+    dt_ficha: Optional[datetime] = None,
+    cns_cpf_cidadao: Optional[str] = None
+    fl_cidadao_respon_familiar: Optional[str] = None
+    cns_cpf_respon_familiar: Optional[str] = None
+    microarea: Optional[str] = None
+    nm_completo: Optional[str] = None
+    nm_social: Optional[str] = None
+    dt_nasc: Optional[str] = None
+    sexo: Optional[str] = None
+    raca_cor: Optional[str] = None
+    etnia: Optional[str] = None
+    nis: Optional[str] = None
+    nm_completo_mae: Optional[str] = None
+    nm_completo_pai: Optional[str] = None
+    nacionalidade: Optional[str] = None
+    pais_nasc: Optional[str] = None
+    dt_naturalizacao: Optional[str] = None
+    portaria_naturaliz: Optional[str] = None
+    municipio_uf_nasc: Optional[str] = None
+    dt_entrada_brasil: Optional[str] = None
+    tel_cel: Optional[str] = None
+    email: Optional[str] = None
+    ocupacao: Optional[str] = None
+    situac_mercado_trab: Optional[str] = None
+    rel_parentesco_responsavel_familiar: Optional[str] = None
+    fl_freq_escola_ou_creche: Optional[str] = None
+    curso_mais_elevado: Optional[str] = None
+    criancas_0_a_9_anos_quem_fica: Optional[List[str]] = []
+    fl_freq_cuidador_trad: Optional[str] = None
+    fl_part_gp_comunitario: Optional[str] = None
+    fl_possui_plano_saude_priv: Optional[str] = None
+    fl_membro_povo_comunidade_trad: Optional[str] = None
+    nm_povo_comunidade_trad: Optional[str] = None
+    fl_informar_orientacao_sexual: Optional[str] = None
+    orientacao_sexual: Optional[str] = None
+    fl_informar_identidade_genero: Optional[str] = None
+    identidade_genero: Optional[str] = None
+    fl_deficiencia: Optional[str] = None
+    deficiencia: Optional[List[str]] = []
+    fl_tria_1: Optional[str] = None
+    fl_tria_2: Optional[str] = None
+    fl_saida_cadast: Optional[str] = None
+    dt_obito: Optional[datetime] = None
+    num_do: Optional[str] = None
+    fl_gestante: Optional[str] = None
+    maternidade_referencia: Optional[str] = None
+    peso_considera: Optional[str] = None
+    fl_doenc_resp_pulmao: Optional[str] = None
+    doenc_resp_pulmao: Optional[List[str]] = []
+    fl_fumante: Optional[str] = None
+    fl_alcool: Optional[str] = None
+    fl_outras_drogas: Optional[str] = None
+    fl_hanseniase: Optional[str] = None
+    fl_tuberculose: Optional[str] = None
+    fl_hipertensao_arterial: Optional[str] = None
+    fl_tem_ou_teve_cancer: Optional[str] = None
+    fl_diabetes: Optional[str] = None
+    fl_internacao_ultimos_12_meses: Optional[str] = None
+    causa_internacao_ultimos_12_meses: Optional[str] = None
+    fl_avc_derrame: Optional[str] = None
+    fl_infarto: Optional[str] = None
+    fl_problema_saude_mental: Optional[str] = None
+    fl_doenc_cardi_coracao: Optional[str] = None
+    doenc_cardi_coracao: Optional[List[str]] = []
+    fl_acamado: Optional[str] = None
+    fl_domiciliado: Optional[str] = None
+    fl_plantas_medicinais: Optional[str] = None
+    plantas_medicinais: Optional[str] = None
+    fl_problemas_nos_rins: Optional[str] = None
+    problemas_nos_rins: Optional[List[str]] = []
+    fl_prat_integrativas_e_compl: Optional[str] = None
+    outras_condicoes_saude: Optional[List[str]] = []
+    fl_situacao_rua: Optional[str] = None
+    tempo_em_situacao_rua: Optional[str] = None
+    fl_acompanhado_outra_institu: Optional[str] = None
+    instituicao: Optional[str] = None
+    fl_beneficio: Optional[str] = None
+    fl_possui_ref_fami: Optional[str] = None
+    fl_visita_fami: Optional[str] = None
+    grau_parentesco: Optional[str] = None
+    fl_higiene_pessoal: Optional[str] = None
+    higiene_pessoal: Optional[List[str]] = []
+    alimentacao_ao_dia: Optional[str] = None
+    origem_alimentacao: Optional[List[str]] = []
+
+class AIMessageModel(BaseModel):
+    """"Agent Message Model"""
+
+    title: DocumentTypeEnum
+    content: FichaCadastroIndividualContent
+
