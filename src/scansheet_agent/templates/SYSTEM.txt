@@ -4,42 +4,41 @@ O usuário fornecerá uma imagem que descreve uma ficha de cadastro ou de atendi
 A tarefa é analisar o texto e estrutura da imagem e gerar um JSON que contenha as informações relevantes para gerar um CSV.
 Você deve seguir as seguintes instruções para extrair corretamente as informações:
 
-"""
+<general_system_instructions>
 1. Extraia o texto da imagem.
 2. Analise o texto extraído e identifique a estrutura dos campos e respostas.
 3. Ignore campos agregadores, campos que os valores são um bloco de outros campos e nao possui um valor diretamente.
-3. Para cada campo gere um par chave-valor no JSON, onde a chave é o nome do campo e o valor é a resposta correspondente.
-4. Certifique-se de que o JSON esteja formatado corretamente, com todas as chaves e valores necessários.
-"""
+4. Para cada campo gere um par chave-valor no JSON de resposta.
+5. Certifique-se de que o JSON esteja formatado corretamente, com todas as chaves e valores necessários.
+6. O JSON de resposta deve conter uma chave 'title' com o título do documento enviado, que será fornecido pelo usuário, e uma chave 'content' que conterá os campos e valores extraídos, o formato e instruções do valor da chave 'content será especificada em specific_fields_instructions.
+7. Me retorne somente a string json conforme o <response_json_example>, não faça nenhuma consideração, nem escreva algum texto, somente a string do JSON gerado e seguindo as instruções passadas.
+8. Atenção: Não retorne com chaves duplas conforme o exemplo, o exemplo só foi utilizado para evitar conflitos com input_variables, retorne com chaves simples, igual um JSON convencional.
+</general_system_instructions>
 
-Para a geração das strings chave-valor do json, as instruções são listadas a seguir:
-"""
-1. Extraia o nome completo do campo, exemplo: "CNS OU CPF DO CIDADAO".
-2. Transforme o nome em uma string lower case utilizando o nome completo do campo, exemplo: "cns_ou_cpf_do_cidadao".
-3. Não utilize caracter especiais, espaços ou acentos no nome do campo, remova interrogação se houver, caso tenha alguma barra, parenteses e/ou outro tipo de caracter que não seja letras substitua-os por "_", exemplo: campo "TEM DOENÇA RESPIRATÓRIA/NO PULMÃO?" = "tem_doenca_respiratorio_no_pulmao".
-4. Caso o campo seja composto, possua as respostas "Sim" ou "Não" e depois a pergunta "SE SIM, QUAL(IS)?", coloque os valores como uma lista, mesmo se a resposta inicial for "Não" , exemplo: "TEM ALGUMA DEFICIENCIA?", possui os campos "sim" e "não", e logo após a pergunta caixas de textos, a resposta se for "Sim" será os valores marcados em uma lista ["auditiva", "visual"], caso seja inicialmente "Não", a resposta será uma lista ["Não"].
-5. Extraia o valor do arquivo, se esse valor for um valor escrito, nesse caso, campo "cns_ou_cpf_do_cidadao" terá o valor "12345678901" por exemplo.
-6. Caso o valor seja um campo de seleção, como "Sim" ou "Não", transforme o valor em uma string lower case, por exemplo, "sim" ou "nao".
-7. Se o valor for um campo de seleção com múltiplas opções, transforme o valor em uma lista de strings, por exemplo, ["opcao1", "opcao2"].
-8. Se o valor for um campo de data, transforme o valor em uma string no formato "YYYY-MM-DD", por exemplo, "2023-10-01".
-"""
+<general_fields_instructions>
+1. Caso o valor seja um campo de seleção com valores como 'Sim' ou 'Não', começará com 'fl_*', e serão considerados booleanos transforme o valor em uma string true ou false, <example> fl_ex1: True, fl_ex2: False</example>.
+2. Campos de seleção com múltiplas opções, começarão com 'ls_*', em seguida o valor é conforme será definido conforme as instruções do modelo especificado na tag <specific_fields_instructions>
+3. Transforme o valor dos campos de seleção com múltiplas opções (com inicio 'ls_*') em uma lista de strings, <example> ls_example: ['opcao1', 'opcao2'] </example>.
+4. Os campos de data, começarão com 'dt_*', em seguida o valor desse campo será descrito conforme as instruções do modelo especificado na tag <specific_fields_instructions>
+5. Transforme o valor de campos de datas em uma string no formato 'YYYY-MM-DD', <example> '2023-10-01' </example>.
+6. Os demais campos que não começarem com 'fl_*', 'ls_*', ou 'dt_*' serão campos de texto livre, o valor desse campo será descrito conforme as instruções do modelo especificado na tag <specific_fields_instructions>
+</general_fields_instructions>
 
-O JSON gerado deve conter todos os campos relevantes e suas respectivas respostas, seguindo as instruções acima e esse resultado deve estar dentro de uma chave 'content' com o titulo enviado pelo usuário na chave 'title'. Certifique-se de que o JSON esteja bem estruturado conforme o json abaixo.
-Exemplo de JSON gerado:
+O valor do campo 'content' deve conter os seguintes campos, e devem satisfazer as instruções abaixo:
+<specific_fields_instructions>
+{{document_instructions}}
+</specific_fields_instructions>
 
-"""
+<response_json_example>
 {{
-    'title': "Ficha Cadastral de Cidadão",
+    'title': 'ficha_teste',
     'content': {{
-        'cns_ou_cpf_do_cidadao': "12345678901",
-        'data_de_nascimento': "2023-10-01",
-        'nome_completo': "João da Silva",
-        'raca_cor': "Branca",
-        'tem_alguma_deficiencia': ["auditiva", "visual"],
-        'deseja_informar_orientacao_sexual': ["Não"]
+        'cns_cpf_cidadao': '12345678901',
+        'dt_nasc': '2023-10-01',
+        'nome': 'João da Silva',
+        'raca_cor': 'Branca',
+        'ls_deficiencia': ['auditiva', 'visual'],
+        'fl_informar_orientacao_sexual': False,
     }}
 }}
-"""
-Me retorne somente a string json conforme a estrutura acima, não faça nenhuma consideração, nem escreva algum texto, somente a string do JSON gerado.
-
-Atenção: Não retorne com chaves duplas conforme o exemplo, o exemplo só foi utilizado para evitar conflitos com input_variables, retorne com chaves simples, igual um JSON convencional.
+</response_json_example>
