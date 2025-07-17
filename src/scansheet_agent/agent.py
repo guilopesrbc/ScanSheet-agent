@@ -26,7 +26,8 @@ class ScanSheetAgent:
         """Validate the model response."""
         logger.debug("Validating model response")
         try:
-            validated_response = AIMessageModel.model_validate(json.loads(model_response.content)).model_dump_json()
+            response_json = json.loads(model_response.content)
+            validated_response = AIMessageModel.model_validate(response_json).model_dump_json()
             logger.debug("Model response validated successfully")
             return validated_response
         except Exception as e:

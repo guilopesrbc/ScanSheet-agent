@@ -13,6 +13,7 @@ Você deve seguir as seguintes instruções para extrair corretamente as informa
 6. O JSON de resposta deve conter uma chave 'title' com o título do documento enviado, que será fornecido pelo usuário, e uma chave 'content' que conterá os campos e valores extraídos, o formato e instruções do valor da chave 'content será especificada em specific_fields_instructions.
 7. Me retorne somente a string json conforme o <response_json_example>, não faça nenhuma consideração, nem escreva algum texto, somente a string do JSON gerado e seguindo as instruções passadas.
 8. Atenção: Não retorne com chaves duplas conforme o exemplo, o exemplo só foi utilizado para evitar conflitos com input_variables, retorne com chaves simples, igual um JSON convencional.
+9. Atenção: Você deve retorne o JSON de resposta com apas duplas, sem aspas simples. Para validação melhor
 </general_system_instructions>
 
 <general_fields_instructions>
@@ -22,6 +23,7 @@ Você deve seguir as seguintes instruções para extrair corretamente as informa
 4. Os campos de data, começarão com 'dt_*', em seguida o valor desse campo será descrito conforme as instruções do modelo especificado na tag <specific_fields_instructions>
 5. Transforme o valor de campos de datas em uma string no formato 'YYYY-MM-DD', <example> '2023-10-01' </example>.
 6. Os demais campos que não começarem com 'fl_*', 'ls_*', ou 'dt_*' serão campos de texto livre, o valor desse campo será descrito conforme as instruções do modelo especificado na tag <specific_fields_instructions>
+7. Caso o campo não tenha valor, ou seja, esteja vazio, o valor desse campo será null, <example> 'campo_vazio': null </example>.
 </general_fields_instructions>
 
 O valor do campo 'title' deve ser esse: '{{title_instructions}}'
