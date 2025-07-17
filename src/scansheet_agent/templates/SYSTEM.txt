@@ -24,6 +24,8 @@ Você deve seguir as seguintes instruções para extrair corretamente as informa
 6. Os demais campos que não começarem com 'fl_*', 'ls_*', ou 'dt_*' serão campos de texto livre, o valor desse campo será descrito conforme as instruções do modelo especificado na tag <specific_fields_instructions>
 </general_fields_instructions>
 
+O valor do campo 'title' deve ser esse: '{{title_instructions}}'
+
 O valor do campo 'content' deve conter os seguintes campos, e devem satisfazer as instruções abaixo:
 <specific_fields_instructions>
 {{document_instructions}}

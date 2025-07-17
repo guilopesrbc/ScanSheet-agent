@@ -2,7 +2,7 @@ from datetime import datetime, date
 from enum import Enum
 from typing import Optional, List
 
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, validator
 
 
 class DocumentTypeEnum(Enum):
@@ -138,19 +138,29 @@ class FichaCadastroIndividualContent(BaseModel):
 
 
 class AIMessageModel(BaseModel):
-    """"Agent Message Model"""
+    """Agent Message Model"""
 
     title: DocumentTypeEnum
-    content: FichaCadastroIndividualContent | dict
+    content: dict
 
     @field_validator('content')
-    def validate_content_for_title(cls, v, values):
-        if 'title' in values and values['title'] == DocumentTypeEnum.OUTROS:
-            if not isinstance(v, dict):
-                raise ValueError('Content must be a dictionary for title "OUTROS"')
+    def validate_content_type(cls, content, info):
+        """Validate content type based on title."""
+        title = info.data.get('title')
 
-        if 'title' in values and values['title'] == DocumentTypeEnum.FICHA_CADASTRO_INDIVIDUAL:
-            if not isinstance(v, FichaCadastroIndividualContent):
+        if title == DocumentTypeEnum.FICHA_CADASTRO_INDIVIDUAL:
+            if not isinstance(content, FichaCadastroIndividualContent):
+                try:
+                    # Try to convert dict to FichaCadastroIndividualContent
+                    return FichaCadastroIndividualContent.model_validate(content)
+                except Exception as e:
+                    raise ValueError(
+                        f'content must be convertible to FichaCadastroIndividualContent when title is FICHA_CADASTRO_INDIVIDUAL: {str(e)}'
+                    )
+        elif title == DocumentTypeEnum.OUTROS:
+            if not isinstance(content, dict):
                 raise ValueError(
-                    'Content must be of type FichaCadastroIndividualContent for title "FICHA_CADASTRO_INDIVIDUAL"')
-        return v
+                    'content must be dict when title is OUTROS'
+                )
+
+        return content
