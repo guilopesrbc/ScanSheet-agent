@@ -1,14 +1,23 @@
 [project]
 name = "scansheet-agent"
-version = "0.2.1"
+version = "1.0.0"
 description = "ScanSheet Agent Library"
 requires-python = ">=3.10"
+authors = [
+    {name = "Seu Nome", email = "seu.email@exemplo.com"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+]
 dependencies = [
     "langchain==0.3.25",
-    "langchain-core==0.3.64",
-    "langchain-openai==0.3.21",
+    "langchain-core==0.3.69",
+    "langchain-openai==0.3.28",
     "pydantic==2.11.5",
-    "openai==1.84.0",
+    "openai==1.97.0",
 ]
 
 [build-system]
@@ -22,4 +31,12 @@ packages = ["scansheet_agent"]
 [project.optional-dependencies]
 dev = [
     "pip-tools",
+    "wheel",
+    "setuptools",
+    "pytest>=7.0",
+    "pytest-cov",
+    "black",
+    "isort",
+    "flake8",
+    "mypy",
 ]
