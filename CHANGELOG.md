@@ -1,6 +1,12 @@
 # Changelog
 
-## [v1.0.0] - 2025-07-17
+## [v1.1.0] - 2025-07-17
+
+### Fixed
+- Fixed issues with document quality prediction
+- Fixed issues with response validation
+
+## [v1.0.0] - 2025-07-16
 
 Release of the first stable version of the project.
 
