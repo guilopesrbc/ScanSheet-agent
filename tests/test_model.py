@@ -2,7 +2,8 @@ import unittest
 import json
 from pydantic import ValidationError
 
-from src.model import AIMessageModel
+from scansheet_agent import AIMessageModel
+from scansheet_agent.schemas import DocumentTypeEnum
 
 
 class TestAIMessageModel(unittest.TestCase):
@@ -10,15 +11,15 @@ class TestAIMessageModel(unittest.TestCase):
         """Test creating a valid AIMessageModel."""
         # Create a valid model
         data = {
-            "title": "Test Title",
+            "title": "outros",
             "content": {"field1": "value1", "field2": "value2"}
         }
-        
+
         # Create the model
         model = AIMessageModel.model_validate(data)
-        
+
         # Assertions
-        self.assertEqual(model.title, "Test Title")
+        self.assertEqual(model.title, DocumentTypeEnum.OUTROS)
         self.assertEqual(model.content, {"field1": "value1", "field2": "value2"})
 
     def test_missing_title(self):
@@ -27,7 +28,7 @@ class TestAIMessageModel(unittest.TestCase):
         data = {
             "content": {"field1": "value1", "field2": "value2"}
         }
-        
+
         # Attempt to create the model and expect an exception
         with self.assertRaises(ValidationError):
             AIMessageModel.model_validate(data)
@@ -36,9 +37,9 @@ class TestAIMessageModel(unittest.TestCase):
         """Test creating a model with missing content."""
         # Create data with missing content
         data = {
-            "title": "Test Title"
+            "title": DocumentTypeEnum.OUTROS
         }
-        
+
         # Attempt to create the model and expect an exception
         with self.assertRaises(ValidationError):
             AIMessageModel.model_validate(data)
@@ -50,7 +51,7 @@ class TestAIMessageModel(unittest.TestCase):
             "title": 123,  # Should be a string
             "content": {"field1": "value1", "field2": "value2"}
         }
-        
+
         # Attempt to create the model and expect an exception
         with self.assertRaises(ValidationError):
             AIMessageModel.model_validate(data)
@@ -59,10 +60,10 @@ class TestAIMessageModel(unittest.TestCase):
         """Test creating a model with invalid content type."""
         # Create data with invalid content type
         data = {
-            "title": "Test Title",
+            "title": DocumentTypeEnum.OUTROS,
             "content": "not a dict"  # Should be a dict
         }
-        
+
         # Attempt to create the model and expect an exception
         with self.assertRaises(ValidationError):
             AIMessageModel.model_validate(data)
@@ -71,26 +72,26 @@ class TestAIMessageModel(unittest.TestCase):
         """Test serializing the model to JSON."""
         # Create a valid model
         data = {
-            "title": "Test Title",
+            "title": DocumentTypeEnum.OUTROS,
             "content": {"field1": "value1", "field2": "value2"}
         }
         model = AIMessageModel.model_validate(data)
-        
+
         # Serialize to JSON
         json_str = model.model_dump_json()
-        
+
         # Parse the JSON string back to a dict
         parsed_data = json.loads(json_str)
-        
+
         # Assertions
-        self.assertEqual(parsed_data["title"], "Test Title")
+        self.assertEqual(parsed_data["title"], "outros")  # Enum serializes to its value
         self.assertEqual(parsed_data["content"], {"field1": "value1", "field2": "value2"})
 
     def test_complex_content(self):
         """Test creating a model with complex content."""
         # Create data with complex content
         data = {
-            "title": "Test Title",
+            "title": DocumentTypeEnum.OUTROS,
             "content": {
                 "field1": "value1",
                 "nested": {
@@ -102,12 +103,12 @@ class TestAIMessageModel(unittest.TestCase):
                 "null": None
             }
         }
-        
+
         # Create the model
         model = AIMessageModel.model_validate(data)
-        
+
         # Assertions
-        self.assertEqual(model.title, "Test Title")
+        self.assertEqual(model.title, DocumentTypeEnum.OUTROS)
         self.assertEqual(model.content["field1"], "value1")
         self.assertEqual(model.content["nested"]["subfield1"], "subvalue1")
         self.assertEqual(model.content["nested"]["subfield2"], 123)
