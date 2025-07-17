@@ -1,0 +1,13 @@
+Essas são as instruções para a geração do valor do campo 'content' para JSON de resposta a partir de outros documentos, documentos esses que não possuem uma estrutura no nosso schema de modelos, mas que ainda assim devem ser processados para gerar um JSON válido:
+
+<instructions>
+1. Extraia o nome completo do campo, exemplo: "CNS OU CPF DO CIDADAO".
+2. Transforme o nome em uma string lower case utilizando o nome completo do campo, exemplo: "cns_ou_cpf_do_cidadao".
+3. Não utilize caracter especiais, espaços ou acentos no nome do campo, remova interrogação se houver, caso tenha alguma barra, parenteses e/ou outro tipo de caracter que não seja letras substitua-os por "_", exemplo: campo "TEM DOENÇA RESPIRATÓRIA/NO PULMÃO?" = "tem_doenca_respiratorio_no_pulmao".
+4. Extraia o valor do arquivo, se esse valor for um valor escrito, nesse caso, campo "cns_ou_cpf_do_cidadao" terá o valor "12345678901" por exemplo.
+5. Os campos que forem referentes a seleção com apenas duas opções, o prefixo desse campo será substituido por "fl_", por exemplo, o campo 'tem_doenca_respiratoria' que conforme a regra seria 'tem_doenca_respiratoria', será 'fl_tem_doenca_respiratoria'.
+6. Os campos que forem referentes a seleção com multiplas opções, o prefixo desse campo será substituido por  "ls_", por exemplo, o campo 'deficiência' que conforme a regra seria 'deficiencia', será 'ls_deficiencia'.]
+7. Caso esse campo de multipla opção tenha relação com alguma campo de seleção com apenas duas opções, o nome dessa campo será igual ao campo de seleção com apenas duas opções, somente substituindo o prefixo 'fl_*' por 'ls_*'.
+8. Se o valor for um campo de data, transforme o valor em uma string no formato "YYYY-MM-DD", por exemplo, "2023-10-01".
+9. Os campos que forem referentes a data, o prefixo desse campo será substituido por "dt_", por exemplo, o campo 'data de nascimento' que conforme a regra seria 'data_de_nascimento', será 'dt_de_nascimento'.
+</instructions>
