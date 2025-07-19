@@ -1,5 +1,10 @@
 # Changelog
 
+## [v1.1.1] - 2025-07-19
+
+### Fixed
+- Updated dependencies installation
+
 ## [v1.1.0] - 2025-07-17
 
 ### Fixed

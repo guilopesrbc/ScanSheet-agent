@@ -1,6 +1,6 @@
 [project]
 name = "scansheet-agent"
-version = "1.1.0"
+version = "1.1.1"
 description = "ScanSheet Agent Library"
 requires-python = ">=3.10"
 authors = [
@@ -27,6 +27,10 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 package-dir = {"" = "src"}
 packages = ["scansheet_agent"]
+
+[tool.setuptools.package-data]
+scansheet_agent = ["templates/*", "templates/**/*"]
+
 
 [project.optional-dependencies]
 dev = [
