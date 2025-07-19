@@ -93,9 +93,9 @@ class FichaCadastroIndividualContent(BaseModel):
     fl_problemas_rins: Optional[bool] = None
     ls_problemas_rins: Optional[List[str]] = []
     fl_outras_praticas: Optional[bool] = None
-    outras_condicoes_saude_1: Optional[bool] = None
-    outras_condicoes_saude_2: Optional[bool] = None
-    outras_condicoes_saude_3: Optional[bool] = None
+    outras_condicoes_saude_1: Optional[str] = None
+    outras_condicoes_saude_2: Optional[str] = None
+    outras_condicoes_saude_3: Optional[str] = None
     fl_situacao_rua: Optional[bool] = None
     tempo_situacao_rua: Optional[str] = None
     fl_acompanhado_outra_institu: Optional[bool] = None
