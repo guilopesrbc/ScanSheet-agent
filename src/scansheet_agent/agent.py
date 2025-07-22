@@ -18,7 +18,7 @@ class ScanSheetAgent:
 
         self.api_key = api_key
         self.model = model
-        self.client = ChatOpenAI(model=self.model, api_key=SecretStr(self.api_key))
+        self.client = ChatOpenAI(model=self.model, api_key=SecretStr(self.api_key), max_tokens=5000)
         logger.info("ScanSheetAgent initialized successfully")
 
     @staticmethod

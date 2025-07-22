@@ -78,6 +78,8 @@ class PromptBuilder:
                     title = variables.get("title", "outros")
                     logger.debug(f"Document type: {title}")
 
+                    json_data = variables.get("json_data", "{}")
+
                     title_valid_values = [e.value for e in DocumentTypeEnum]
                     if title not in title_valid_values:
                         error_msg = (
@@ -93,6 +95,7 @@ class PromptBuilder:
 
                     system_content = system_content.replace("{{title_instructions}}", title)
                     system_content = system_content.replace("{{document_instructions}}", document_instructions)
+                    system_content = system_content.replace("{{json_input}}", json_data)
 
                     logger.debug("Document instructions added to system content")
 
@@ -103,9 +106,9 @@ class PromptBuilder:
                         raise ValueError(error_msg)
 
                     logger.debug("Image base64 validated")
-                    human_content = [
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}}
-                    ]
+                    # human_content = [
+                    #     {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}}
+                    # ]
                     logger.debug("Human content with image created")
                 else:
                     error_msg = "Variables is empty."
@@ -113,7 +116,7 @@ class PromptBuilder:
                     raise ValueError(error_msg)
 
                 messages.append(SystemMessage(content=system_content))
-                messages.append(HumanMessage(content=human_content))
+                # messages.append(HumanMessage(content=human_content))
                 logger.debug("Messages created successfully")
 
             else:
