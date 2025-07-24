@@ -1,98 +1,516 @@
 Essas são as instruções para a geração do valor do campo 'content' para JSON de resposta a partir da ficha de cadastro individual:
 
 <instructions>
-digitado_por: "DIGITADO POR: Nome ou identificação de quem realizou a digitação dos dados da ficha."
-conferido_por: "CONFERIDO POR: Nome ou identificação de quem realizou a conferência dos dados da ficha."
-num_folha: "FOLHA Nº: Número que identifica a folha ou registro da ficha."
-dt_preenchimento: "DATA: Data em que a ficha foi preenchida (formato YYYY-MM-DD)."
-cns_prof: "CNS DO PROFISSIONAL: Número do CNS do profissional responsável."
-cbo: "CBO: Número do CBO."
-cnes: "CNES: Código do estabelecimento de saúde onde o atendimento foi realizado."
-ine: "INE: Indicador de registro no Instituto Nacional de Estudos ou similar."
-dt_ficha: "DATA: Data em que a ficha foi preenchida (formato YYYY-MM-DD)."
-cns_cpf_cidadao: "CNS OU CPF DO CIDADAO*: Número do CNS ou CPF do cidadão."
-cns_cpf_respon_familiar: "CNS OU CPF DO RESPONSÁVEL FAMILIAR: Número do documento (CNS/CPF) do responsável familiar."
-fl_cidadao_respon_familiar: "CIDADÃO É O RESPONSÁVEL FAMILIAR?: Opções: Sim (true), Não (false)."
-microarea: "MICROÁREA: Identificação da microárea de atuação ou residência."
-nm_completo: "NOME COMPLETO*: Nome completo do cidadão."
-nm_social: "NOME SOCIAL: Nome social, se utilizado."
-dt_nasc: "DATA DE NASCIMENTO*: Data de nascimento do cidadão (formato YYYY-MM-DD)."
-sexo: "SEXO: Indicador de sexo, valores informados como M ou F."
-raca_cor: "RAÇA/COR: Opções: Branca, Parda, Amarela, Indígena."
-etnia: "Etnia:** Etnia declarada pelo cidadão."
-nis: "Nº NIS (PIS/PASEP): Número de Identificação Social para benefícios."
-nm_completo_mae: "NOME COMPLETO DA MÃE*: Nome completo da mãe (observando que pode constar 'Desconhecido' se não informado)."
-nm_completo_pai: "NOME COMPLETO DO PAI: Nome completo do pai (pode vir com indicação 'Desconhecido' se não informado)."
-nacionalidade: "NACIONALIDADE: Opções: Brasileira, Naturalizado, Estrangeiro."
-pais_nasc: "PAÍS DE NASCIMENTO:** País de nascimento."
-dt_naturalizacao: "DATA DE NATURALIZAÇÃO: Data de naturalização (formato YYYY-MM-DD)."
-portaria_naturaliz: "PORTARIA DE NATURALIZAÇÃO:** Número da portaria de naturalização."
-municipio_uf_nasc: "MUNICÍPIO E UF DE NASCIMENTO:** Município e UF do local de nascimento."
-dt_entrada_brasil: "DATA DE ENTRADA NO BRASIL:** Data de entrada no Brasil (formato YYYY-MM-DD)."
-tel_cel: "TELEFONE CELULAR: Número do telefone celular."
-email: "E-MAIL: Endereço de e-mail."
-rel_parentesco_responsavel_familiar: "RELAÇÃO DE PARENTESCO COM O RESPONSÁVEL FAMILIAR: Opções: Cônjuge/Companheiro(a), Filho(a), Enteado(a), Neto(a)/Bisneto(a), Pai/Mae, Sogro(a), Irmão/Irma, Genro/Nora, Outro parente, Não parente."
-ocupacao: "OCUPAÇÃO: Ocupação ou profissão do cidadão."
-fl_freq_escola_ou_creche: "FREQUENTA ESCOLA OU CRECHE?: Opções: Sim (true), Não (false)."
-curso_mais_elevado: "QUAL É O CURSO MAIS ELEVADO QUE FREQUENTA OU FREQUENTOU?: Opções: Creche, Pré-escola (exceto CA), Classe de Alfabetização - CA, Ensino Fundamental 1ª a 4ª séries, Ensino Fundamental 5 a 8ª séries, Ensino Fundamental Completo, Alfabetização para Adultos (Mobral etc.), Ensino Fundamental Especial, Ensino Fundamental EJA séries iniciais (Supletivo 1 a 4), Ensino Fundamental EJA - séries finais (Supletivo 5 a 8), Ensino Médio, Médio 2º Ciclo (Científico, Técnico etc.), Ensino Médio Especial, Ensino Médio EJA (Supletivo), Superior, Aperfeiçoamento, Especialização, Mestrado, Doutorado, Nenhum."
-situac_mercado_trab: "SITUAÇÃO NO MERCADO DE TRABALHO: Opções: Empregador, Assalariado com carteira de trabalho, Assalariado sem carteira de trabalho, Autônomo com previdência social, Autónomo sem previdência social, Aposentado/Pensionista, Desempregado, Não trabalha, Servidor público/militar, Outro."
-ls_criancas_0_a_9_anos_quem_fica: "CRIANÇAS DE 0 A 9 ANOS, COM QUEM FICA?: Opções: Adulto Responsável, Outra(s) Criança(s) Adolescente, Sozinha, Creche, Outro."
-fl_freq_cuidador_trad: "FREQUENTA CUIDADOR TRADICIONAL?: Opções: Sim (true), Não (false)."
-fl_part_gp_comunitario: "PARTICIPA DE ALGUM GRUPO COMUNITÁRIO?: Opções: Sim (true), Não (false)."
-fl_possui_plano_saude_priv: "POSSUI PLANO DE SAÚDE PRIVADO?: Opções: Sim (true), Não (false)."
-fl_membro_povo_comunidade_trad: "É MEMBRO DE POVO OU COMUNIDADE TRADICIONAL OU CAMPO, FLORESTA E ÁGUAS?: Opções: Sim (true), Não (false)."
-nm_povo_comunidade_trad: "SE SIM, QUAL?: Nome do povo ou comunidade tradicional."
-fl_informar_orientacao_sexual: "DESEJA INFORMAR ORIENTAÇÃO SEXUAL?: Opções: Sim (true), Não (false)."
-orientacao_sexual: "SE SIM, QUAL? (Orientação Sexual): Opções: Heterossexual, Gay, Lésbica, Bissexual, Assexual, Pansexual, Outro."
-fl_informar_identidade_genero: "DESEJA INFORMAR IDENTIDADE DE GÊNERO?: Opções: Sim (true), Não (false)."
-identidade_genero: "SE SIM, QUAL? (Identidade de Gênero): Opções: Homem cisgênero, Mulher cisgenero, Homem transgênero, Mulher transgénero, Travesti, Não-Binário, Outro."
-fl_deficiencia: "TEM ALGUMA DEFICIÊNCIA?: Opções: Sim (true), Não (false)."
-ls_deficiencia: "SE SIM, QUAL(IS)?: Opções: Auditiva, Intelectual/Cognitiva, Visual, Física, Outra."
-fl_tria_1: "NOS ÚLTIMOS TRÊS MESES, OS ALIMENTOS ACABARAM ANTES QUE VOCÊ TIVESSE DINHEIRO PARA COMPRAR MAIS COMIDA?: Opções: Sim (true), Não (false)."
-fl_tria_2: "NOS ÚLTIMOS TRÊS MESES, VOCÊ COMEU APENAS ALGUNS ALIMENTOS QUE AINDA TINHA, PORQUE O DINHEIRO ACABOU?: Opções: Sim (true), Não (false)."
-fl_saida_cadast: "SAÍDA DO CIDADÃO DO CADASTRO: Opções: Mudança de território, Óbito."
-dt_obito: "Data do óbito: Data do óbito (formato YYYY-MM-DD)."
-num_do: "Número da D.O.: Número do documento relacionado ao óbito."
-fl_gestante: "ESTÁ GESTANTE?: Opções: Sim (true), Não (false)."
-maternidade_referencia: "SE SIM, QUAL É A MATERNIDADE DE REFERÊNCIA?: Nome ou código da maternidade de referência."
-peso_considera: "SOBRE SEU PESO, VOCÊ SE CONSIDERA?: Opções: Abaixo do Peso, Peso Adequado, Acima do Peso."
-fl_doenc_resp_pulmao: "TEM DOENÇA RESPIRATÓRIA/NO PULMÃO?: Opções: Sim (true), Não (false)."
-ls_doenc_resp_pulmao: "SE SIM, INDIQUE QUAL(IS). (Doença Respiratória): Opções: Asma, DPOC/Enfisema, Outra, Não Sabe."
-fl_fumante: "ESTÁ FUMANTE?: Opções: Sim (true), Não (false)."
-fl_alcool: "FAZ USO DE ÁLCOOL?: Opções: Sim (true), Não (false)."
-fl_hanseniase: "ESTÁ COM HANSENÍASE?: Opções: Sim (true), Não (false)."
-fl_outras_drogas: "FAZ USO DE OUTRAS DROGAS?: Opções: Sim (true), Não (false)."
-fl_tuberculose: "ESTÁ COM TUBERCULOSE?: Opções: Sim (true), Não (false)."
-fl_hipertensao_arterial: "TEM HIPERTENSÃO ARTERIAL?: Opções: Sim (true), Não (false)."
-fl_tem_ou_teve_cancer: "TEM OU TEVE CANCER?: Opções: Sim (true), Não (false)."
-fl_diabetes: "TEM DIABETES?: Opções: Sim (true), Não (false)."
-fl_internacao_ultimos_12_meses: "TEVE ALGUMA INTERNAÇÃO NOS ÚLTIMOS 12 MESES?: Opções: Sim (true), Não (false)."
-causa_internacao_ultimos_12_meses: "SE SIM, POR QUAL CAUSA?: Descrição da causa da internação."
-fl_avc_derrame: "TEVE AVC/DERRAME?: Opções: Sim (true), Não (false)."
-fl_infarto: "TEVE INFARTO?: Opções: Sim (true), Não (false)."
-fl_saude_mental: "TEVE DIAGNÓSTICO DE ALGUM PROBLEMA DE SAÚDE MENTAL POR PROFISSIONAL DE SAÚDE?: Opções: Sim (true), Não (false)."
-fl_doenc_cardiaca: "TEM DOENÇA CARDÍACA/DO CORAÇÃO?: Opções: Sim (true), Não (false)."
-ls_doenc_cardiaca: "SE SIM, INDIQUE QUAL(IS). (Doença Cardíaca): Opções: Insuficiência Cardíaca, Outra, Não Sabe."
-fl_acamado: "ESTÁ ACAMADO?: Opções: Sim (true), Não (false)."
-fl_domiciliado: "ESTÁ DOMICILIADO?: Opções: Sim (true), Não (false)."
-fl_plantas_medicinais: "USA PLANTAS MEDICINAIS?: Opções: Sim (true), Não (false)."
-plantas_medicinais: "SE SIM, INDIQUE QUAL(IS). (Plantas Medicinais): Descrição das plantas utilizadas."
-fl_problemas_rins: "TEM OU TEVE PROBLEMAS NOS RINS?: Opções: Sim (true), Não (false)."
-ls_problemas_rins: "SE SIM, INDIQUE QUAL(IS). (Problemas nos Rins): Opções: Insuficiência Renal, Outro, Não Sabe."
-fl_outras_praticas: "USA OUTRAS PRÁTICAS INTEGRATIVAS E COMPLEMENTARES?: Opções: Sim (true), Não (false)."
-outras_condicoes_saude_1: "1-QUAL? (Outras Condições de Saúde): Descrição da prática ou condição."
-outras_condicoes_saude_2: "2-QUAL? (Outras Condições de Saúde): Descrição da prática ou condição."
-outras_condicoes_saude_3: "3-QUAL? (Outras Condições de Saúde): Descrição da prática ou condição."
-fl_situacao_rua: "ESTÁ EM SITUAÇÃO DE RUA?: Opções: Sim (true), Não (false)."
-fl_acompanhado_outra_institu: "É ACOMPANHADO POR OUTRA INSTITUIÇÃO?: Opções: Sim (true), Não (false)."
-instituicao_acompanhamento: "SE SIM, INDIQUE QUAL(IS). (Instituição de acompanhamento): Nome ou identificação da instituição."
-tempo_situacao_rua: "TEMPO EM SITUAÇÃO DE RUA?: Opções: <6 meses, 6 a 12 meses, 1 a 5 anos, > 5 anos."
-fl_beneficio: "RECEBE ALGUM BENEFÍCIO?: Opções: Sim (true), Não (false)."
-fl_visita_familiar: "VISITA ALGUM FAMILIAR COM FREQUENCIA?: Opções: Sim (true), Não (false)."
-grau_parentesco_visita: "SE SIM, QUAL O GRAU DE PARENTESCO?: Grau de parentesco informado."
-fl_referencia_familiar: "POSSUI REFERÊNCIA FAMILIAR?: Opções: Sim (true), Não (false)."
-alimentacao_diaria: "QUANTAS VEZES SE ALIMENTA AO DIA?: Opções: 1 vez, 2 ou 3 vezes, mais de 3 vezes."
-fl_acesso_higiene: "TEM ACESSO À HIGIENE PESSOAL?: Opções: Sim (true), Não (false)."
-ls_acesso_higiene: "SE SIM, INDIQUE QUAL(IS). (Acesso à Higiene Pessoal): Opções: Banho, Acesso ao Sanitário, Higiene Bucal, Outras."
-ls_origem_alimentacao: "QUAL A ORIGEM DA ALIMENTAÇÃO?: Opções: Restaurante Popular, Doação Restaurante, Doação Grupo Religioso, Doação de Popular, Outras."
+```
+- <campo>digitado_por</campo>
+  - <nome_do_campo>"DIGITADO POR"</nome_do_campo>
+  - <descricao_do_campo>"Nome ou identificação de quem realizou a digitação dos dados da ficha."</descricao_do_campo>
+- <campo>conferido_por</campo>
+  - <nome_do_campo>"CONFERIDO POR"</nome_do_campo>
+  - <descricao_do_campo>"Nome ou identificação de quem realizou a conferência dos dados da ficha."</descricao_do_campo>
+- <campo>num_folha</campo>
+  - <nome_do_campo>"FOLHA Nº"</nome_do_campo>
+  - <descricao_do_campo>"Número que identifica a folha ou registro da ficha."</descricao_do_campo>
+- <campo>dt_preenchimento</campo>
+  - <nome_do_campo>"DATA"</nome_do_campo>
+  - <descricao_do_campo>"Data em que a ficha foi preenchida (formato YYYY-MM-DD)."</descricao_do_campo>
+- <campo>cns_prof</campo>
+  - <nome_do_campo>"CNS DO PROFISSIONAL"</nome_do_campo>
+  - <descricao_do_campo>"Número do CNS do profissional responsável."</descricao_do_campo>
+- <campo>cbo</campo>
+  - <nome_do_campo>"CBO"</nome_do_campo>
+  - <descricao_do_campo>"Número do CBO."</descricao_do_campo>
+- <campo>cnes</campo>
+  - <nome_do_campo>"CNES"</nome_do_campo>
+  - <descricao_do_campo>"Código do estabelecimento de saúde onde o atendimento foi realizado."</descricao_do_campo>
+- <campo>ine</campo>
+  - <nome_do_campo>"INE"</nome_do_campo>
+  - <descricao_do_campo>"Indicador de registro no Instituto Nacional de Estudos ou similar."</descricao_do_campo>
+- <campo>dt_ficha</campo>
+  - <nome_do_campo>"DATA"</nome_do_campo>
+  - <descricao_do_campo>"Data em que a ficha foi preenchida (formato YYYY-MM-DD)."</descricao_do_campo>
+- <campo>cns_cpf_cidadao</campo>
+  - <nome_do_campo>"CNS OU CPF DO CIDADAO*"</nome_do_campo>
+  - <descricao_do_campo>"Número do CNS ou CPF do cidadão."</descricao_do_campo>
+- <campo>cns_cpf_respon_familiar</campo>
+  - <nome_do_campo>"CNS OU CPF DO RESPONSÁVEL FAMILIAR"</nome_do_campo>
+  - <descricao_do_campo>"Número do documento (CNS/CPF) do responsável familiar."</descricao_do_campo>
+- <campo>fl_cidadao_respon_familiar</campo>
+  - <nome_do_campo>"CIDADÃO É O RESPONSÁVEL FAMILIAR?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>microarea</campo>
+  - <nome_do_campo>"MICROÁREA"</nome_do_campo>
+  - <descricao_do_campo>"Identificação da microárea de atuação ou residência."</descricao_do_campo>
+- <campo>nm_completo</campo>
+  - <nome_do_campo>"NOME COMPLETO*"</nome_do_campo>
+  - <descricao_do_campo>"Nome completo do cidadão."</descricao_do_campo>
+- <campo>nm_social</campo>
+  - <nome_do_campo>"NOME SOCIAL"</nome_do_campo>
+  - <descricao_do_campo>"Nome social, se utilizado."</descricao_do_campo>
+- <campo>dt_nasc</campo>
+  - <nome_do_campo>"DATA DE NASCIMENTO*"</nome_do_campo>
+  - <descricao_do_campo>"Data de nascimento do cidadão (formato YYYY-MM-DD)."</descricao_do_campo>
+- <campo>sexo</campo>
+  - <nome_do_campo>"SEXO"</nome_do_campo>
+  - <descricao_do_campo>"Indicador de sexo, valores informados como M ou F."</descricao_do_campo>
+- <campo>raca_cor</campo>
+  - <nome_do_campo>"RAÇA/COR"</nome_do_campo>
+  - <opcoes>
+    - ("Branca")
+    - ("Parda")
+    - ("Preta")
+    - ("Amarela")
+    - ("Indígena")
+  - </opcoes>
+- <campo>etnia</campo>
+  - <nome_do_campo>"Etnia**"</nome_do_campo>
+  - <descricao_do_campo>"Etnia declarada pelo cidadão."</descricao_do_campo>
+- <campo>nis</campo>
+  - <nome_do_campo>"Nº NIS (PIS/PASEP)"</nome_do_campo>
+  - <descricao_do_campo>"Número de Identificação Social para benefícios."</descricao_do_campo>
+- <campo>nm_completo_mae</campo>
+  - <nome_do_campo>"NOME COMPLETO DA MÃE*"</nome_do_campo>
+  - <descricao_do_campo>"Nome completo da mãe (observando que pode constar 'Desconhecido' se não informado)."</descricao_do_campo>
+- <campo>nm_completo_pai</campo>
+  - <nome_do_campo>"NOME COMPLETO DO PAI"</nome_do_campo>
+  - <descricao_do_campo>"Nome completo do pai (pode vir com indicação 'Desconhecido' se não informado)."</descricao_do_campo>
+- <campo>nacionalidade</campo>
+  - <nome_do_campo>"NACIONALIDADE"</nome_do_campo>
+  - <opcoes>
+    - ("Brasileira")
+    - ("Naturalizado")
+    - ("Estrangeiro")
+  - </opcoes>
+- <campo>pais_nasc</campo>
+  - <nome_do_campo>"PAÍS DE NASCIMENTO**"</nome_do_campo>
+  - <descricao_do_campo>"País de nascimento."</descricao_do_campo>
+- <campo>dt_naturalizacao</campo>
+  - <nome_do_campo>"DATA DE NATURALIZAÇÃO"</nome_do_campo>
+  - <descricao_do_campo>"Data de naturalização (formato YYYY-MM-DD)."</descricao_do_campo>
+- <campo>portaria_naturaliz</campo>
+  - <nome_do_campo>"PORTARIA DE NATURALIZAÇÃO**"</nome_do_campo>
+  - <descricao_do_campo>"Número da portaria de naturalização."</descricao_do_campo>
+- <campo>municipio_uf_nasc</campo>
+  - <nome_do_campo>"MUNICÍPIO E UF DE NASCIMENTO**"</nome_do_campo>
+  - <descricao_do_campo>"Município e UF do local de nascimento."</descricao_do_campo>
+- <campo>dt_entrada_brasil</campo>
+  - <nome_do_campo>"DATA DE ENTRADA NO BRASIL**"</nome_do_campo>
+  - <descricao_do_campo>"Data de entrada no Brasil (formato YYYY-MM-DD)."</descricao_do_campo>
+- <campo>tel_cel</campo>
+  - <nome_do_campo>"TELEFONE CELULAR"</nome_do_campo>
+  - <descricao_do_campo>"Número do telefone celular."</descricao_do_campo>
+- <campo>email</campo>
+  - <nome_do_campo>"E-MAIL"</nome_do_campo>
+  - <descricao_do_campo>"Endereço de e-mail."</descricao_do_campo>
+- <campo>rel_parentesco_responsavel_familiar</campo>
+  - <nome_do_campo>"RELAÇÃO DE PARENTESCO COM O RESPONSÁVEL FAMILIAR"</nome_do_campo>
+  - <opcoes>
+    - ("Cônjuge/Companheiro(a)")
+    - ("Filho(a)")
+    - ("Enteado(a)")
+    - ("Neto(a)/Bisneto(a)")
+    - ("Pai/Mae")
+    - ("Sogro(a)")
+    - ("Irmão/Irma")
+    - ("Genro/Nora")
+    - ("Outro parente")
+    - ("Não parente")
+  - </opcoes>
+- <campo>ocupacao</campo>
+  - <nome_do_campo>"OCUPAÇÃO"</nome_do_campo>
+  - <descricao_do_campo>"Ocupação ou profissão do cidadão."</descricao_do_campo>
+- <campo>fl_freq_escola_ou_creche</campo>
+  - <nome_do_campo>"FREQUENTA ESCOLA OU CRECHE?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>curso_mais_elevado</campo>
+  - <nome_do_campo>"QUAL É O CURSO MAIS ELEVADO QUE FREQUENTA OU FREQUENTOU?"</nome_do_campo>
+  - <opcoes>
+    - ("Creche")
+    - ("Pré-escola (exceto CA), Classe de Alfabetização - CA")
+    - ("Ensino Fundamental 1ª a 4ª séries")
+    - ("Ensino Fundamental 5 a 8ª séries")
+    - ("Ensino Fundamental Completo")
+    - ("Alfabetização para Adultos (Mobral etc.)")
+    - ("Ensino Fundamental Especial")
+    - ("Ensino Fundamental EJA séries iniciais (Supletivo 1 a 4)")
+    - ("Ensino Fundamental EJA - séries finais (Supletivo 5 a 8)")
+    - ("Ensino Médio, Médio 2º Ciclo (Científico, Técnico etc.)")
+    - ("Ensino Médio Especial")
+    - ("Ensino Médio EJA (Supletivo)")
+    - ("Superior, Aperfeiçoamento, Especialização, Mestrado, Doutorado")
+    - ("Nenhum")
+  - </opcoes>
+- <campo>situac_mercado_trab</campo>
+  - <nome_do_campo>"SITUAÇÃO NO MERCADO DE TRABALHO"</nome_do_campo>
+  - <opcoes>
+    - ("Empregador")
+    - ("Assalariado com carteira de trabalho")
+    - ("Assalariado sem carteira de trabalho")
+    - ("Autônomo com previdência social")
+    - ("Autónomo sem previdência social")
+    - ("Aposentado/Pensionista")
+    - ("Desempregado")
+    - ("Não trabalha")
+    - ("Servidor público/militar")
+    - ("Outro")
+  - </opcoes>
+- <campo>ls_criancas_0_a_9_anos_quem_fica</campo>
+  - <nome_do_campo>"CRIANÇAS DE 0 A 9 ANOS, COM QUEM FICA?"</nome_do_campo>
+  - <opcoes>
+    - ("Adulto Responsável")
+    - ("Outra(s) Criança(s) Adolescente")
+    - ("Sozinha")
+    - ("Creche")
+    - ("Outro")
+  - </opcoes>
+- <campo>fl_freq_cuidador_trad</campo>
+  - <nome_do_campo>"FREQUENTA CUIDADOR TRADICIONAL?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_part_gp_comunitario</campo>
+  - <nome_do_campo>"PARTICIPA DE ALGUM GRUPO COMUNITÁRIO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_possui_plano_saude_priv</campo>
+  - <nome_do_campo>"POSSUI PLANO DE SAÚDE PRIVADO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_membro_povo_comunidade_trad</campo>
+  - <nome_do_campo>"É MEMBRO DE POVO OU COMUNIDADE TRADICIONAL OU CAMPO, FLORESTA E ÁGUAS?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>nm_povo_comunidade_trad</campo>
+  - <nome_do_campo>"SE SIM, QUAL?"</nome_do_campo>
+  - <descricao_do_campo>"Nome do povo ou comunidade tradicional."</descricao_do_campo>
+- <campo>fl_informar_orientacao_sexual</campo>
+  - <nome_do_campo>"DESEJA INFORMAR ORIENTAÇÃO SEXUAL?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>orientacao_sexual</campo>
+  - <nome_do_campo>"SE SIM, QUAL? (Orientação Sexual)"</nome_do_campo>
+  - <descricao_do_campo>"Valor único da orientação sexual. Deve ser uma string somente com um valor"</descricao_do_campo>
+  - <opcoes>
+    - ("Heterossexual")
+    - ("Gay")
+    - ("Lésbica")
+    - ("Bissexual")
+    - ("Assexual")
+    - ("Pansexual")
+    - ("Outro")
+  - </opcoes>
+- <campo>fl_informar_identidade_genero</campo>
+  - <nome_do_campo>"DESEJA INFORMAR IDENTIDADE DE GÊNERO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>identidade_genero</campo>
+  - <nome_do_campo>"SE SIM, QUAL? (Identidade de Gênero)"</nome_do_campo>
+  - <descricao_do_campo>"Valor único da identidade de gênero. Deve ser uma string somente com um valor"</descricao_do_campo>
+  - <opcoes>
+    - ("Homem cisgênero")
+    - ("Mulher cisgenero")
+    - ("Homem transgênero")
+    - ("Mulher transgénero")
+    - ("Travesti")
+    - ("Não-Binário")
+    - ("Outro")
+  - </opcoes>
+- <campo>fl_deficiencia</campo>
+  - <nome_do_campo>"TEM ALGUMA DEFICIÊNCIA?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>ls_deficiencia</campo>
+  - <nome_do_campo>"SE SIM, QUAL(IS)?"</nome_do_campo>
+  - <opcoes>
+    - ("Auditiva")
+    - ("Intelectual/Cognitiva")
+    - ("Visual")
+    - ("Física")
+    - ("Outra")
+  - </opcoes>
+- <campo>fl_tria_1</campo>
+  - <nome_do_campo>"NOS ÚLTIMOS TRÊS MESES, OS ALIMENTOS ACABARAM ANTES QUE VOCÊ TIVESSE DINHEIRO PARA COMPRAR MAIS COMIDA?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_tria_2</campo>
+  - <nome_do_campo>"NOS ÚLTIMOS TRÊS MESES, VOCÊ COMEU APENAS ALGUNS ALIMENTOS QUE AINDA TINHA, PORQUE O DINHEIRO ACABOU?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_saida_cadast</campo>
+  - <nome_do_campo>"SAÍDA DO CIDADÃO DO CADASTRO"</nome_do_campo>
+  - <opcoes>
+    - ("Mudança de território")
+    - ("Óbito")
+  - </opcoes>
+- <campo>dt_obito</campo>
+  - <nome_do_campo>"Data do óbito"</nome_do_campo>
+  - <descricao_do_campo>"Data do óbito (formato YYYY-MM-DD)."</descricao_do_campo>
+- <campo>num_do</campo>
+  - <nome_do_campo>"Número da D.O."</nome_do_campo>
+  - <descricao_do_campo>"Número do documento relacionado ao óbito."</descricao_do_campo>
+- <campo>fl_gestante</campo>
+  - <nome_do_campo>"ESTÁ GESTANTE?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>maternidade_referencia</campo>
+  - <nome_do_campo>"SE SIM, QUAL É A MATERNIDADE DE REFERÊNCIA?"</nome_do_campo>
+  - <descricao_do_campo>"Nome ou código da maternidade de referência."</descricao_do_campo>
+- <campo>peso_considera</campo>
+  - <nome_do_campo>"SOBRE SEU PESO, VOCÊ SE CONSIDERA?"</nome_do_campo>
+  - <opcoes>
+    - ("Abaixo do Peso")
+    - ("Peso Adequado")
+    - ("Acima do Peso")
+  - </opcoes>
+- <campo>fl_doenc_resp_pulmao</campo>
+  - <nome_do_campo>"TEM DOENÇA RESPIRATÓRIA/NO PULMÃO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>ls_doenc_resp_pulmao</campo>
+  - <nome_do_campo>"SE SIM, INDIQUE QUAL(IS). (Doença Respiratória)"</nome_do_campo>
+  - <opcoes>
+    - ("Asma")
+    - ("DPOC/Enfisema")
+    - ("Outra")
+    - ("Não Sabe")
+  - </opcoes>
+- <campo>fl_fumante</campo>
+  - <nome_do_campo>"ESTÁ FUMANTE?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_alcool</campo>
+  - <nome_do_campo>"FAZ USO DE ÁLCOOL?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_hanseniase</campo>
+  - <nome_do_campo>"ESTÁ COM HANSENÍASE?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_outras_drogas</campo>
+  - <nome_do_campo>"FAZ USO DE OUTRAS DROGAS?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_tuberculose</campo>
+  - <nome_do_campo>"ESTÁ COM TUBERCULOSE?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_hipertensao_arterial</campo>
+  - <nome_do_campo>"TEM HIPERTENSÃO ARTERIAL?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_tem_ou_teve_cancer</campo>
+  - <nome_do_campo>"TEM OU TEVE CANCER?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_diabetes</campo>
+  - <nome_do_campo>"TEM DIABETES?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_internacao_ultimos_12_meses</campo>
+  - <nome_do_campo>"TEVE ALGUMA INTERNAÇÃO NOS ÚLTIMOS 12 MESES?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>causa_internacao_ultimos_12_meses</campo>
+  - <nome_do_campo>"SE SIM, POR QUAL CAUSA?"</nome_do_campo>
+  - <descricao_do_campo>"Descrição da causa da internação."</descricao_do_campo>
+- <campo>fl_avc_derrame</campo>
+  - <nome_do_campo>"TEVE AVC/DERRAME?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_infarto</campo>
+  - <nome_do_campo>"TEVE INFARTO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_saude_mental</campo>
+  - <nome_do_campo>"TEVE DIAGNÓSTICO DE ALGUM PROBLEMA DE SAÚDE MENTAL POR PROFISSIONAL DE SAÚDE?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_doenc_cardiaca</campo>
+  - <nome_do_campo>"TEM DOENÇA CARDÍACA/DO CORAÇÃO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>ls_doenc_cardiaca</campo>
+  - <nome_do_campo>"SE SIM, INDIQUE QUAL(IS). (Doença Cardíaca)"</nome_do_campo>
+  - <opcoes>
+    - ("Insuficiência Cardíaca")
+    - ("Outra")
+    - ("Não Sabe")
+  - </opcoes>
+- <campo>fl_acamado</campo>
+  - <nome_do_campo>"ESTÁ ACAMADO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_domiciliado</campo>
+  - <nome_do_campo>"ESTÁ DOMICILIADO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_plantas_medicinais</campo>
+  - <nome_do_campo>"USA PLANTAS MEDICINAIS?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>plantas_medicinais</campo>
+  - <nome_do_campo>"SE SIM, INDIQUE QUAL(IS). (Plantas Medicinais)"</nome_do_campo>
+  - <descricao_do_campo>"Descrição das plantas utilizadas."</descricao_do_campo>
+- <campo>fl_problemas_rins</campo>
+  - <nome_do_campo>"TEM OU TEVE PROBLEMAS NOS RINS?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>ls_problemas_rins</campo>
+  - <nome_do_campo>"SE SIM, INDIQUE QUAL(IS). (Problemas nos Rins)"</nome_do_campo>
+  - <opcoes>
+    - ("Insuficiência Renal")
+    - ("Outro")
+    - ("Não Sabe")
+  - </opcoes>
+- <campo>fl_outras_praticas</campo>
+  - <nome_do_campo>"USA OUTRAS PRÁTICAS INTEGRATIVAS E COMPLEMENTARES?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>outras_condicoes_saude_1</campo>
+  - <nome_do_campo>"1-QUAL? (Outras Condições de Saúde)"</nome_do_campo>
+  - <descricao_do_campo>"Descrição da prática ou condição."</descricao_do_campo>
+- <campo>outras_condicoes_saude_2</campo>
+  - <nome_do_campo>"2-QUAL? (Outras Condições de Saúde)"</nome_do_campo>
+  - <descricao_do_campo>"Descrição da prática ou condição."</descricao_do_campo>
+- <campo>outras_condicoes_saude_3</campo>
+  - <nome_do_campo>"3-QUAL? (Outras Condições de Saúde)"</nome_do_campo>
+  - <descricao_do_campo>"Descrição da prática ou condição."</descricao_do_campo>
+- <campo>fl_situacao_rua</campo>
+  - <nome_do_campo>"ESTÁ EM SITUAÇÃO DE RUA?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_acompanhado_outra_institu</campo>
+  - <nome_do_campo>"É ACOMPANHADO POR OUTRA INSTITUIÇÃO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>instituicao_acompanhamento</campo>
+  - <nome_do_campo>"SE SIM, INDIQUE QUAL(IS). (Instituição de acompanhamento)"</nome_do_campo>
+  - <descricao_do_campo>"Nome ou identificação da instituição."</descricao_do_campo>
+- <campo>tempo_situacao_rua</campo>
+  - <nome_do_campo>"TEMPO EM SITUAÇÃO DE RUA?"</nome_do_campo>
+  - <opcoes>
+    - ("<6 meses")
+    - ("6 a 12 meses")
+    - ("1 a 5 anos")
+    - ("> 5 anos")
+  - </opcoes>
+- <campo>fl_beneficio</campo>
+  - <nome_do_campo>"RECEBE ALGUM BENEFÍCIO?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>fl_visita_familiar</campo>
+  - <nome_do_campo>"VISITA ALGUM FAMILIAR COM FREQUENCIA?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>grau_parentesco_visita</campo>
+  - <nome_do_campo>"SE SIM, QUAL O GRAU DE PARENTESCO?"</nome_do_campo>
+  - <descricao_do_campo>"Grau de parentesco informado."</descricao_do_campo>
+- <campo>fl_referencia_familiar</campo>
+  - <nome_do_campo>"POSSUI REFERÊNCIA FAMILIAR?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>alimentacao_diaria</campo>
+  - <nome_do_campo>"QUANTAS VEZES SE ALIMENTA AO DIA?"</nome_do_campo>
+  - <opcoes>
+    - ("1 vez")
+    - ("2 ou 3 vezes")
+    - ("mais de 3 vezes")
+  - </opcoes>
+- <campo>fl_acesso_higiene</campo>
+  - <nome_do_campo>"TEM ACESSO À HIGIENE PESSOAL?"</nome_do_campo>
+  - <opcoes>
+    - ("Sim (true)")
+    - ("Não (false)")
+  - </opcoes>
+- <campo>ls_acesso_higiene</campo>
+  - <nome_do_campo>"SE SIM, INDIQUE QUAL(IS). (Acesso à Higiene Pessoal)"</nome_do_campo>
+  - <opcoes>
+    - ("Banho")
+    - ("Acesso ao Sanitário")
+    - ("Higiene Bucal")
+    - ("Outras")
+  - </opcoes>
+- <campo>ls_origem_alimentacao</campo>
+  - <nome_do_campo>"QUAL A ORIGEM DA ALIMENTAÇÃO?"</nome_do_campo>
+  - <opcoes>
+    - ("Restaurante Popular")
+    - ("Doação Restaurante")
+    - ("Doação Grupo Religioso")
+    - ("Doação de Popular")
+    - ("Outras")
+  - </opcoes>
+```
 </instructions>
