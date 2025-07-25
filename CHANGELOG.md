@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.2.0] - 2025-07-25
+
+### Added
+- Added pdf ocr extraction using mistralai
+- Added image and pdf markdown for chat gpt prompt
+
+### Updated
+- Update prompts content
+
 ## [v1.1.1] - 2025-07-19
 
 ### Fixed
