@@ -28,7 +28,11 @@ class ScanSheetAgent:
 
     @staticmethod
     def validate_model_response(model_response: AIMessage):
-        """Validate the model response."""
+        """Validate the model response.
+
+        Args:
+            model_response (AIMessage): The response from the model to be validated
+        """
         logger.debug("Validating model response")
         try:
             response_json = json.loads(model_response.content)
@@ -42,14 +46,14 @@ class ScanSheetAgent:
     def _extract_ocr(self, pdf_base64: str) -> OCRResponse:
         """
         Extract the OCR (Optical Character Recognition) data from a base64-encoded PDF document.
-    
+
         Args:
             pdf_base64 (str): The base64-encoded content of the PDF document to be processed.
-    
+
         Returns:
             OCRResponse: An object containing the extracted OCR data, potentially including images 
             and text content obtained from the PDF document.
-    
+
         Raises:
             Exception: If an error occurs during the OCR extraction process.
         """
@@ -118,16 +122,24 @@ class ScanSheetAgent:
             raise e
 
     def build_chain(self, prompt: ChatPromptTemplate):
+        """Build a processing chain with the given prompt.
+
+        Args:
+            prompt (ChatPromptTemplate): The prompt template to use in the chain
+
+        Returns:
+            RunnableSerializable: The constructed processing chain
+        """
         logger.debug("Building processing chain")
         chain = prompt | self.chatgpt | self.validate_model_response
         logger.debug("Chain built successfully")
         return chain
 
     def run(self, variables: Dict[str,str], inputs: Optional[Dict[str, str]] = None):
-        """Run the agent with the given prompt and inputs.
+        """Run the agent with the given variables and inputs.
 
         Args:
-            prompt (ChatPromptTemplate): The prompt to use
+            variables (Dict[str, str]): Variables used to create the prompt, must include 'pdf_base64'
             inputs (Optional[Dict[str, str]]): Input parameters for the chain
 
         Returns:

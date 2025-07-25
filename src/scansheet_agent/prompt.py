@@ -26,6 +26,7 @@ class PromptBuilder:
 
         Args:
             file_name (str): Template file name
+            get_document_instructions (bool): If True, reads from document_instructions subdirectory
 
         Returns:
             str: Template content
@@ -61,7 +62,8 @@ class PromptBuilder:
 
         Args:
             system_template (str): System template file name
-            variables (Dict[str, Any]): Template variables, must include 'markdown_content' and 'title'
+            variables (Dict[str, str]): Dictionary containing variables for template substitution, 
+                must include 'markdown_content', 'title', and 'image_base64'
 
         Returns:
             ChatPromptTemplate: Configured prompt template

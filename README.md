@@ -22,7 +22,6 @@ pip install .[dev]
 To use the ScanSheet Agent Library, you can import it in your Python script.
 ```python
 from scansheet_agent.agent import ScanSheetAgent
-from scansheet_agent.prompt import PromptBuilder
 ```
 
 ### Configuration
@@ -37,15 +36,16 @@ Check the OpenAI documentation for more details on model capabilities:
 https://platform.openai.com/docs/guides/images-vision?api-mode=responses
 
 ```python
-agent = ScanSheetAgent(api_key="your_api_key", model="gpt-4")
+agent = ScanSheetAgent(chat_gpt_model="your_chat_gpt_api_model", chat_gpt_api_key="your_chat_gpt_api_key", mistral_api_key="your_mistral_api_key")
 ``` 
 
 #### Variables and Inputs
-You must to provide the image as a bytestring in variables and a valid ```scansheet_agent.schemas.DocumentTypeEnum``` when creating prompt.
+You must to provide the image and pdf as a bytestring in variables and a valid ```scansheet_agent.schemas.DocumentTypeEnum``` when creating prompt.
 You can also provide additional inputs that will be used in the prompt, check project prompts to use availables input.
 ```python
 variables = {
     "image_base64": "Your image as a base64 encoded string",
+    "pdf_base64": "Your pdf as a base64 encoded string",
     "title": "Your document type title",
 }
 
@@ -54,25 +54,10 @@ inputs = {
 }
 ```
 
-#### Prompt Builder
-You can use the `PromptBuilder` class to create prompts from templates.
-
-It allows you to define user and system templates in a directory called "templates".
-
-You can create a prompt using the `create_prompt` method, specifying the system templates available and with your variables.
-```python
-prompt_builder = PromptBuilder(templates_dir="templates")
-
-prompt = prompt_builder.create_prompt(
-    system_template="Sytem template available, default is 'SYSTEM.txt'", 
-    variables=variables
-)
-```
-
 #### Invoke the Agent
 Finally, you can invoke the agent using the `run` method, passing in the prompt and any additional inputs.
 ```python
-response = agent.run(prompt=prompt, inputs=inputs) 
+response = agent.run(variables=variables, inputs=inputs) 
 # inputs is optional, you can pass it if you want to use additional inputs in the prompt
 # check project prompts to use availables input.
 ```
