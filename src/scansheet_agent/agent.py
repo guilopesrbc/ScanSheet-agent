@@ -5,20 +5,25 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableSerializable
+from mistralai import Mistral, OCRResponse
 from pydantic import SecretStr
 
+from scansheet_agent import PromptBuilder
 from scansheet_agent.schemas import AIMessageModel
 
 # Configure logger
 logger = logging.getLogger(__name__)
 
 class ScanSheetAgent:
-    def __init__(self, api_key: str, model: str):
+    def __init__(self, chat_gpt_api_key: str, chat_gpt_model: str, mistral_api_key: str):
         logger.info("Initializing ScanSheetAgent")
 
-        self.api_key = api_key
-        self.model = model
-        self.client = ChatOpenAI(model=self.model, api_key=SecretStr(self.api_key))
+        self.chat_gpt_api_key = chat_gpt_api_key
+        self.chat_gpt_model = chat_gpt_model
+
+        self.chatgpt = ChatOpenAI(model=self.chat_gpt_model, api_key=SecretStr(self.chat_gpt_api_key))
+        self.mistral_ai = Mistral(api_key=mistral_api_key)
+
         logger.info("ScanSheetAgent initialized successfully")
 
     @staticmethod
@@ -32,7 +37,58 @@ class ScanSheetAgent:
             return validated_response
         except Exception as e:
             logger.error(f"Error validating model response: {str(e)}")
-            raise
+            raise e
+
+    def _extract_ocr(self, pdf_base64: str) -> OCRResponse:
+        """
+        Extract the OCR (Optical Character Recognition) data from a base64-encoded PDF document.
+    
+        Args:
+            pdf_base64 (str): The base64-encoded content of the PDF document to be processed.
+    
+        Returns:
+            OCRResponse: An object containing the extracted OCR data, potentially including images 
+            and text content obtained from the PDF document.
+    
+        Raises:
+            Exception: If an error occurs during the OCR extraction process.
+        """
+
+        try:
+            ocr_response = self.mistral_ai.ocr.process(
+                model="mistral-ocr-latest",
+                document={
+                    "type": "document_url",
+                    "document_url": f"data:application/pdf;base64,{pdf_base64}"
+                },
+                include_image_base64=True
+            )
+            return ocr_response
+        except Exception as e:
+            logger.error("Error extracting OCR")
+            raise e
+
+    @staticmethod
+    def _get_ocr_markdown(ocr_response: OCRResponse) -> str:
+        """
+        Extract markdown content from OCRResponse for all pages.
+
+        Args:
+            ocr_response (OCRResponse): The OCR response from Mistral AI
+
+        Returns:
+            str: Combined markdown content from all pages
+        """
+        markdown_content = []
+
+        # Iterate through all pages in the response
+        for page in ocr_response.pages:
+            # Get markdown content for the current page
+            if page.markdown:
+                markdown_content.append(page.markdown)
+
+        # Join all markdown content with double newlines between pages
+        return "\n\n".join(markdown_content)
 
     @staticmethod
     def invoke_model(chain: RunnableSerializable, inputs=None) -> Dict[str, str]:
@@ -59,15 +115,15 @@ class ScanSheetAgent:
             return response
         except Exception as e:
             logger.error(f"Error invoking model: {str(e)}")
-            raise
+            raise e
 
     def build_chain(self, prompt: ChatPromptTemplate):
         logger.debug("Building processing chain")
-        chain = prompt | self.client | self.validate_model_response
+        chain = prompt | self.chatgpt | self.validate_model_response
         logger.debug("Chain built successfully")
         return chain
 
-    def run(self, prompt: ChatPromptTemplate, inputs: Optional[Dict[str, str]] = None):
+    def run(self, variables: Dict[str,str], inputs: Optional[Dict[str, str]] = None):
         """Run the agent with the given prompt and inputs.
 
         Args:
@@ -81,6 +137,10 @@ class ScanSheetAgent:
         logger.debug(f"Using inputs: {inputs}")
 
         try:
+            ocr_response = self._extract_ocr(variables.get("pdf_base64"))
+            markdown_content = self._get_ocr_markdown(ocr_response)
+            variables['markdown_content'] = markdown_content
+            prompt = PromptBuilder().create_prompt(variables=variables)
             chain = self.build_chain(prompt)
             model_response = self.invoke_model(chain, inputs)
             logger.info("Agent run completed successfully")

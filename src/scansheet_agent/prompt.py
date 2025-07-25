@@ -61,7 +61,7 @@ class PromptBuilder:
 
         Args:
             system_template (str): System template file name
-            variables (Dict[str, Any]): Template variables, must include 'image_base64' and 'title'
+            variables (Dict[str, Any]): Template variables, must include 'markdown_content' and 'title'
 
         Returns:
             ChatPromptTemplate: Configured prompt template
@@ -99,13 +99,20 @@ class PromptBuilder:
                     image_base64 = variables.get("image_base64")
                     if not image_base64 or image_base64 == '':
                         error_msg = "image_base64 not exists or is an empty string."
-                        logger.error(error_msg)
                         raise ValueError(error_msg)
 
                     logger.debug("Image base64 validated")
-                    human_content = [
+                    image_content = [
                         {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}}
                     ]
+
+                    markdown_content = variables.get("markdown_content", None)
+                    if not markdown_content or markdown_content == '':
+                        error_msg = "markdown_content not exists or is an empty string."
+                        logger.error(error_msg)
+                        raise ValueError(error_msg)
+
+
                     logger.debug("Human content with image created")
                 else:
                     error_msg = "Variables is empty."
@@ -113,7 +120,8 @@ class PromptBuilder:
                     raise ValueError(error_msg)
 
                 messages.append(SystemMessage(content=system_content))
-                messages.append(HumanMessage(content=human_content))
+                messages.append(HumanMessage(content=markdown_content))
+                messages.append(HumanMessage(content=image_content))
                 logger.debug("Messages created successfully")
 
             else:
