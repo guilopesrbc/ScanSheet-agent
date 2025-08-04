@@ -1,0 +1,22 @@
+schema: '2.0'
+stages:
+  evaluate:
+    cmd: python scripts/evaluate.py data/predicted.json data/target.json
+    deps:
+    - path: data/predicted.json
+      hash: md5
+      md5: fa2f81b89ab31831b7dc3f8505438b88
+      size: 10836
+    - path: data/target.json
+      hash: md5
+      md5: b2e2b262179adbcc694c3ee29d4a85b9
+      size: 13343
+    - path: scripts/evaluate.py
+      hash: md5
+      md5: acdadf15653bad2e1129f91aff0c278b
+      size: 3774
+    outs:
+    - path: data/metrics.json
+      hash: md5
+      md5: b2d2fcbf5e7fb32c81e6e15effb08a63
+      size: 132
