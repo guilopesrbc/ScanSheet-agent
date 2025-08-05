@@ -1,0 +1,5 @@
+{
+    "boolean_accuracy": 0.8552631578947368,
+    "list_accuracy": 0.7857142857142857,
+    "text_accuracy": 0.7551020408163265
+}
