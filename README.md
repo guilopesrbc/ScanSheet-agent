@@ -88,3 +88,49 @@ The tests cover all major components of the library:
 - ScanSheetAgent: Tests for initialization, model response validation, and execution
 - PromptBuilder: Tests for template reading and prompt creation
 - AIMessageModel: Tests for model validation and serialization
+
+## Data Version Control (DVC)
+
+This project uses DVC for managing large files and datasets. Follow these steps to set up and use DVC:
+
+### Setup DVC
+
+1. Initialize DVC in your local repository:
+```bash
+dvc init
+```
+
+2. Add the Google Drive remote storage:
+```bash
+dvc remote add --default myremote gdrive://FOLDER_ID
+```
+
+3. Configure the remote to acknowledge abuse warnings:
+```bash
+dvc remote modify myremote gdrive_acknowledge_abuse true
+```
+
+4. Configure your Google Drive credentials (you'll need to obtain your own credentials):
+```bash
+dvc remote modify myremote gdrive_client_id 'your-client-id'
+dvc remote modify myremote gdrive_client_secret 'your-client-secret'
+```
+
+### Using DVC
+
+1. Add files to DVC:
+```bash
+dvc add data/
+```
+
+2. Push files to the remote storage:
+```bash
+dvc push
+```
+
+3. Pull files from the remote storage:
+```bash
+dvc pull
+```
+
+For more information on using DVC, refer to the [official DVC documentation](https://dvc.org/doc).
