@@ -1,5 +1,10 @@
 # Changelog
 
+## [v1.2.1] - 2025-08-05
+
+### Added
+- DVC configuration for managing datasets and metrics.
+
 ## [v1.2.0] - 2025-07-25
 
 ### Added

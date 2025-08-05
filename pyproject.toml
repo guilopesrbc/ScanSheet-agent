@@ -1,6 +1,6 @@
 [project]
 name = "scansheet-agent"
-version = "1.2.0"
+version = "1.2.1"
 description = "ScanSheet Agent Library"
 requires-python = ">=3.10"
 authors = [
