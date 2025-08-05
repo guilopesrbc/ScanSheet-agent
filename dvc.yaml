@@ -1,11 +1,11 @@
 stages:
   evaluate:
-    cmd: python scripts/evaluate.py data/predicted.json data/target.json
+    cmd: python scripts/evaluate.py data/predicted/predicted.json data/target/target.json
     deps:
       - scripts/evaluate.py
-      - data/predicted.json
-      - data/target.json
+      - data/predicted/predicted.json
+      - data/target/target.json
     # Track the output file as a metric
     metrics:
-      - data/metrics.json:
+      - data/metrics/metrics.json:
           cache: false

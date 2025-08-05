@@ -91,7 +91,7 @@ def main():
             print(f"⚠️ No {field_type.capitalize()} fields found.")
 
     # Save summary to a file for DVC to track
-    output_path = 'data/metrics.json'
+    output_path = 'data/metrics/metrics.json'
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(summary, f, indent=4)
 
